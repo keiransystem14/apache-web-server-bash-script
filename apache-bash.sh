@@ -1,6 +1,13 @@
 cd ..
 cd /var/www
-sudo mkdir world.linux.com
+
+if [ -d "world.linux.com"];
+then
+	exit 0;
+else
+	sudo mkdir world.linux.com;
+fi
+
 cd world.linux.com
 sudo touch index.html
 sudo chmod 666 index.html
