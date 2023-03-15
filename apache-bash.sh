@@ -1,7 +1,7 @@
 cd ..
 cd /var/www
 
-if [ -d "world.linux.com"];
+if [ -d "world.linux.com" ];
 then
 	exit 0;
 else
@@ -10,7 +10,7 @@ fi
 
 cd world.linux.com
 
-if [ -f "index.html"];
+if [ -f "index.html" ];
 then
 	exit 0;
 else
@@ -35,11 +35,18 @@ fi
 
 cd
 ifconfig
-sudo sed -i '4s/192.168.1.30 www.example.ubuntu.com/192.168.1.244 www.world.linux.com/' /etc/hosts
 
+if grep -q '192.168.1.224' /etc/hosts
+then
+	exit 0;
+else
+	sudo sed -i '4s/192.168.1.30 www.example.ubuntu.com/192.168.1.244 www.world.linux.com/' /etc/hosts
+
+fi
+	
 cd /etc/apache2/sites-available 
 
-if [-f "world.linux.com.conf"];
+if [-f "world.linux.com.conf" ];
 then
 	exit 0;
 else
@@ -57,7 +64,7 @@ fi
 
 cd .. & cd sites-enabled
 
-if [-f 'world.linux.com.conf'];
+if [-f 'world.linux.com.conf' ];
 then
 	exit 0;
 else
